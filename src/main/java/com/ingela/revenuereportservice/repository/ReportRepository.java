@@ -14,7 +14,6 @@ public interface ReportRepository extends JpaRepository<Dummy, String> {
     List<TotalValuePerWeekDto> findTotalOrderValueByWeek(Integer year);
     @Query(nativeQuery = true, name = "Dummy.findTotalReturnValueByWeek")
     List<TotalValuePerWeekDto> findTotalReturnValueByWeek(Integer year);
-
     @Query(nativeQuery = true, name = "Dummy.findTotalInvoiceValueByWeek")
     List<TotalValuePerWeekDto> findTotalInvoiceValueByWeek(Integer year);
 }

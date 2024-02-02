@@ -39,6 +39,17 @@ import java.math.BigDecimal;
                         "GROUP BY week " +
                         "ORDER BY week",
                 resultSetMapping = "TotalValueWeekMapping"
+        ),
+        @NamedNativeQuery(
+                name = "Dummy.findTotalInvoiceValueByWeek",
+                query = "SELECT " +
+                        "EXTRACT(WEEK FROM createdAt) AS week, " +
+                        "SUM(CAST(SPLIT_PART(REPLACE(REPLACE(REPLACE(grandTotalConvertedFormattedValue, ' ', ''), 'SEK', ''), ',', '.'), ',', 1) AS NUMERIC)) AS totalReturn " +
+                        "FROM invoices " +
+                        "WHERE EXTRACT(YEAR FROM createdAt) = :year AND storename != 'Wholesale' " +
+                        "GROUP BY week " +
+                        "ORDER BY week",
+                resultSetMapping = "TotalValueWeekMapping"
         )
 })
 @Setter
